@@ -1,19 +1,16 @@
-## Hono + Cloudflare Workers
+## TypeScript + Bun
 
-Cloudflare Workersで動作するHonoを利用した軽量Web APIフレームワークのテンプレートレポジトリです.
+TypeScript + Bunで動作するテンプレートレポジトリです
 
 ### 技術スタック
 
 - DevContainer
 - [Node.js](https://github.com/nodejs/node)
 - [Bun](https://github.com/oven-sh/bun)
-- [Hono](https://hono.dev/)
-- [Cloudflare Workers](https://github.com/cloudflare/workers-sdk)
 - [commitlint](https://github.com/conventional-changelog/commitlint)
 - [husky](https://github.com/typicode/husky)
 - [lint-staged](https://github.com/lint-staged/lint-staged)
 - [PR Agent](https://github.com/Codium-ai/pr-agent)
-- [zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi)
 - GitHub Actions
 
 #### 備考
@@ -25,19 +22,18 @@ Cloudflare Workersで動作するHonoを利用した軽量Web APIフレームワ
 - マージ済みブランチの自動削除に対応
 - GPG Keyを利用して署名付きコミットに対応
 - GPG Keyによる署名の有効化
-- プッシュと同時にブランチを作成する`puah.autoSetupRemote`を有効化
+- プッシュと同時にブランチを作成する`push.autoSetupRemote`を有効化
 - [act](https://github.com/nektos/act)を利用してローカルでGitHub Actionsのテスト実行に対応
 - GitHub ActionsでCI/CDを実行
 - PR AgentでChatGPTを利用した自動コードレビュー
-- zodを利用したより型安全な設計
 - モジュールインポート時に`@`を利用して相対パスに対応
 - リリースバージョンのバリデーション実行
 
 ## 構築
 
 ```zsh
-git clone https://github.com/Magisleap/Hono
-cd Hono
+git clone https://github.com/Magisleap/TypeScript
+cd TypeScript
 ```
 
 VSCodeから`cmd/ctrl + Shift + p`でコマンドパレットを開き, DevContainerで立ち上げます.
@@ -50,26 +46,7 @@ VSCodeから`cmd/ctrl + Shift + p`でコマンドパレットを開き, DevConta
 bun dev
 ```
 
-で開発用サーバーが立ち上がります.
-
-ローカルサーバーの場合にはKV, R2のデータもローカルしか参照できません. `l`を入力するとローカルモードとリモートモードが切り替わります. リモートモードの場合, 本番環境にアクセスすることを避けるために`_preview`のようなサフィックスをつけたステージング用のネームスペースを用意してください.
-
-DevContainer環境で開発する場合, `bun wrangler login`が正常にリダイレクトされないため`CLOUDFLARE_API_TOKEN`を`.env`に書き込んでください.
-
-トークンの発行方法については[公式ドキュメント](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)を読んでください
-
-```zsh
-CLOUDFLARE_ACCOUNT_ID=
-CLOUDFLARE_API_TOKEN=
-```
-
-> `CLOUDFLARE_ACCOUNT_ID`はおそらく不要です
-
-### デプロイ
-
-```zsh
-bun run deploy
-```
+で実行できます
 
 ### GitHub
 
@@ -79,7 +56,6 @@ PR Agentを利用する場合, レポジトリシークレットに`OPENAI_KEY`�
 
 ### FAQ
 
-- wranglerのバージョンを`3.18.0`以降に上げるとサーバーが立ち上がらなくなることがあります
 - Node.jsのバージョンを`20.17.0`以降に上げるとcommitlintが正しく動作しなくなります
 - Node.jsをインストールしないとcommitlintを含む一部の機能が動作しません
 - プッシュ時にリモートブランチ作成のオプションはgitのバージョンが`2.37.0`以降である必要があります
