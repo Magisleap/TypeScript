@@ -1,6 +1,6 @@
 import { readFileSync, readdirSync } from 'node:fs'
 import pLimit from 'p-limit'
-import { Record, RecordMetadataKey, exportJKF, exportJKFString, importKIF } from 'tsshogi'
+import { type Record, RecordMetadataKey, exportJKF, exportJKFString, importKIF } from 'tsshogi'
 
 /**
  * 棋譜をCMSに投稿
@@ -20,7 +20,7 @@ const post_tsume = async (timestamp: string): Promise<void> => {
       const opusNo: string | undefined = record.metadata.getStandardMetadata(RecordMetadataKey.OPUS_NO)
       return opusNo !== undefined ? Number.parseInt(opusNo, 10) : 0
     })()
-    console.log(Record)
+    console.log(process.env.CMS_ACCESS_TOKEN)
     const response = await fetch(url.href, {
       method: 'POST',
       headers: {
