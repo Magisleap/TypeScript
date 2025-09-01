@@ -60,9 +60,6 @@
           "source.organizeImports.biome": "explicit"
         },
         "editor.formatOnSave": true,
-        "files.watcherExclude": {
-          "**/node_modules/**": true
-        },
         "scm.defaultViewMode": "tree"
       }
     }
